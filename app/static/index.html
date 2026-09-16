@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recomendação Pessoal</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Recomendação Pessoal</h1>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="bem-vindo">Bem-vindo</button>
+      <button class="tab-btn" data-tab="assistidos">Já assistidos</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="tab-bem-vindo" class="tab-panel active">
+      <div class="chat-placeholder">
+        <div class="chat-window" id="chat-window">
+          <div class="chat-msg chat-msg--bot">
+            Oi! Me diz o que você está a fim de assistir hoje — tipo
+            <em>"quero um isekai leve pra hoje"</em> ou <em>"algo curto e engraçado"</em> —
+            que eu cruzo com o seu perfil e sugiro alguns animes que você ainda não viu.
+          </div>
+        </div>
+        <form class="chat-input" id="chat-form">
+          <input type="text" id="chat-input" placeholder="O que você quer assistir hoje?" autocomplete="off" required />
+          <button type="submit" id="chat-submit">Enviar</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="tab-assistidos" class="tab-panel">
+      <div class="toolbar">
+        <button id="btn-add" class="btn btn-primary">+ Adicionar anime</button>
+        <span id="lista-status" class="muted"></span>
+      </div>
+      <div id="grid" class="grid"></div>
+    </section>
+  </main>
+
+  <dialog id="dialog-add">
+    <form id="form-search" class="dialog-form">
+      <h2>Buscar anime</h2>
+      <div class="search-row">
+        <input id="input-query" type="text" placeholder="Título (ex: fate)" autocomplete="off" required />
+        <button type="submit" class="btn btn-primary">Buscar</button>
+      </div>
+      <div id="search-results" class="search-results"></div>
+    </form>
+
+    <form id="form-register" class="dialog-form hidden">
+      <h2 id="register-title">Cadastrar</h2>
+      <input type="hidden" id="reg-anilist-id" />
+      <label>
+        Status
+        <select id="reg-status" required>
+          <option value="assistido">Assistido</option>
+          <option value="assistindo">Assistindo</option>
+          <option value="dropado">Dropado</option>
+          <option value="quero_assistir">Quero assistir</option>
+        </select>
+      </label>
+      <label>
+        Nota (0-10)
+        <input id="reg-nota" type="number" min="0" max="10" />
+      </label>
+      <label>
+        Tags próprias (separadas por vírgula)
+        <input id="reg-tags" type="text" placeholder="trilha sonora ótima, ritmo lento no meio" />
+      </label>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-secondary" id="btn-back-search">Voltar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </form>
+
+    <button type="button" class="dialog-close" id="btn-close-dialog" aria-label="Fechar">&times;</button>
+  </dialog>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
